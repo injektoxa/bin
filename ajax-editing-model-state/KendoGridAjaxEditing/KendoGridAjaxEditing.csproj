@@ -107,47 +107,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\DCOBinController.cs" />
+    <Compile Include="Enums\BinStatuses.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Northwind.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Northwind.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Northwind.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Northwind.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Northwind.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Northwind.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>Northwind.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\BinViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Northwind.mdf" />
-    <Content Include="App_Data\Northwind_log.ldf">
-      <DependentUpon>Northwind.mdf</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
-    <Content Include="Models\Northwind.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Northwind.edmx</DependentUpon>
-      <LastGenOutput>Northwind.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Northwind.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Northwind.edmx</DependentUpon>
-      <LastGenOutput>Northwind.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -164,7 +133,6 @@
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
@@ -186,18 +154,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\Northwind.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Northwind.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\Northwind.edmx.diagram">
-      <DependentUpon>Northwind.edmx</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DCOBin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

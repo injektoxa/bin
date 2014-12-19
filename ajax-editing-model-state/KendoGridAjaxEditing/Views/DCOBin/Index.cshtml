@@ -1,0 +1,27 @@
+﻿
+<div id="example">
+    <div id="grid"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: "DCOBin/BinList_Read",
+                        dataType: "json",
+                        type: "post"
+                    },
+                    pageSize: 20
+                },
+                height: 550,
+                groupable: true,
+                sortable: true,
+                pageable: {
+                    refresh: true,
+                    pageSizes: true,
+                    buttonCount: 5
+                }
+            });
+        });
+    </script>
+</div>
