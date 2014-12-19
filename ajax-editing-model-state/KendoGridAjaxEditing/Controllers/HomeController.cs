@@ -1,10 +1,7 @@
 ﻿using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using KendoGridAjaxEditing.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Data;
 
@@ -14,12 +11,10 @@ namespace KendoGridAjaxEditing.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
-
             return View();
         }
 
-        public ActionResult Products_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult BinList_Read([DataSourceRequest]DataSourceRequest request)
         {
             using (var northwind = new NorthwindEntities())
             {
