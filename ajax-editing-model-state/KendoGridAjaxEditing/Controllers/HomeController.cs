@@ -1,4 +1,6 @@
-﻿using Kendo.Mvc.UI;
+﻿using System.Collections.Generic;
+using System.Text;
+using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using KendoGridAjaxEditing.Models;
 using System.Linq;
@@ -9,6 +11,87 @@ namespace KendoGridAjaxEditing.Controllers
 {
     public class HomeController : Controller
     {
+        private IList<ProductViewModel> _productsList;
+
+        public HomeController()
+        {
+            this._productsList = new List<ProductViewModel>
+                {
+                    new ProductViewModel
+                        {
+                            ProductID = 1,
+                            ProductName = "Chai",
+                            UnitsInStock = 2
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 2,
+                            ProductName = "Chang",
+                            UnitsInStock = 0
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 3,
+                            ProductName = "Aniseed Syrup",
+                            UnitsInStock = 14
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 4,
+                            ProductName = "Chef Anton's Cajun Seasoning",
+                            UnitsInStock = 6
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 5,
+                            ProductName = "Chef Anton's Gumbo Mix",
+                            UnitsInStock = 1
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 6,
+                            ProductName = "Grandma's Boysenberry Spread",
+                            UnitsInStock = 2
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 7,
+                            ProductName = "Uncle Bob's Organic Dried Pears",
+                            UnitsInStock = 2
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 8,
+                            ProductName = "Northwoods Cranberry Sauce",
+                            UnitsInStock = 0
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 9,
+                            ProductName = "Mishi Kobe Nik",
+                            UnitsInStock = 14
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 10,
+                            ProductName = "Queso Cabrales",
+                            UnitsInStock = 6
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 11,
+                            ProductName = "Queso Manchego La Pastora",
+                            UnitsInStock = 1
+                        },
+                    new ProductViewModel
+                        {
+                            ProductID = 12,
+                            ProductName = "Konbu",
+                            UnitsInStock = 2
+                        }
+                };
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -105,6 +188,24 @@ namespace KendoGridAjaxEditing.Controllers
             }
             // Return the removed product. Also return any validation errors.
             return Json(new[] { product }.ToDataSourceResult(request, ModelState));
+        }
+
+        public JsonResult GetData()
+        {
+            // uncomment for returning mock list
+            //return Json(this._productsList, JsonRequestBehavior.AllowGet);
+
+            using (var northwind = new NorthwindEntities())
+            {
+                IQueryable<Product> products = northwind.Products;
+                var result = products.Select(p => new ProductViewModel
+                    {
+                        ProductID = p.ProductID,
+                        ProductName = p.ProductName,
+                        UnitsInStock = p.UnitsInStock
+                    }).ToList();
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
