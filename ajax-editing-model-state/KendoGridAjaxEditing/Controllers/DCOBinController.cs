@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Kendo.Mvc.UI;
 using KendoGridAjaxEditing.Enums;
+using KendoGridAjaxEditing.Infrastructure.Search;
 using KendoGridAjaxEditing.Models;
 using System.Web.Mvc;
 
@@ -79,9 +81,13 @@ namespace KendoGridAjaxEditing.Controllers
             return View();
         }
 
-        public ActionResult BinList_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult BinList_Read(SearchBinFilters searchfilters = null)
         {
-            return Json(_productsList, JsonRequestBehavior.AllowGet);
+            var bins = _productsList.AsQueryable();
+            var filters = FiltersFactory.BinSearch;
+            var result = filters.Aggregate(bins, (current, searchFilter) => searchFilter.Apply(current, searchfilters)).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         //public ActionResult Products_Create([DataSourceRequest]DataSourceRequest request, BinViewModel product)
