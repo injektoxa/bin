@@ -1,3 +1,5 @@
 ajax-editing-model-state/packages/
 ajax-editing-model-state/KendoGridAjaxEditing/bin/
 ajax-editing-model-state/KendoGridAjaxEditing/obj/Debug/
+ajax-editing-model-state/Tests/obj/
+ajax-editing-model-state/Tests/bin/
