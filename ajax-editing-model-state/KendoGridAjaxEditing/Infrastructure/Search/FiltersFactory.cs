@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using KendoGridAjaxEditing.Infrastructure.Search.Implementation;
 using KendoGridAjaxEditing.Infrastructure.Search.Interfaces;
 using KendoGridAjaxEditing.Models;

@@ -13,81 +13,44 @@ namespace KendoGridAjaxEditing.Controllers
     {
         private IList<BinViewModel> _productsList;
 
-        public DCOBinController()
-        {
-            this._productsList = new List<BinViewModel>
-                {
-                    new BinViewModel
-                        {
-                            ID = 1234,
-                            BinName = "This is bin",
-                            LastModified = DateTime.Today,
-                            LastModifiedBy = "Alex",
-                            Status = BinStatuses.QA.ToString()
-                        },
-                     new BinViewModel
-                        {
-                            ID = 65334,
-                            BinName = "Bin2",
-                            LastModified = DateTime.Today,
-                            LastModifiedBy = "Alex",
-                            Status = BinStatuses.Processing.ToString()
-                        },
-                     new BinViewModel
-                        {
-                            ID = 64658,
-                            BinName = "TestBin",
-                            LastModified = DateTime.Today,
-                            LastModifiedBy = "Alex",
-                            Status = BinStatuses.Edited.ToString()
-                        },
-                    new BinViewModel
-                        {
-                            ID = 23456,
-                            BinName = "New bin",
-                            LastModified = DateTime.Today,
-                            LastModifiedBy = "Alex",
-                            Status = BinStatuses.PendingQA.ToString()
-                        },
-                     new BinViewModel
-                        {
-                            ID = 78678,
-                            BinName = "not tested",
-                            LastModified = DateTime.Today,
-                            LastModifiedBy = "Den",
-                            Status = BinStatuses.FuturePublish.ToString()
-                        },
-                     new BinViewModel
-                        {
-                            ID = 65346,
-                            BinName = "hey this is bin",
-                            LastModified = DateTime.Today,
-                            LastModifiedBy = "Alex",
-                            Status = BinStatuses.New.ToString()
-                        },
-                    new BinViewModel
-                        {
-                            ID = 2345,
-                            BinName = "____",
-                            LastModified = DateTime.Today,
-                            LastModifiedBy = "Yura",
-                            Status = BinStatuses.New.ToString()
-                        },
-                };
-        }
-
         public ActionResult Index()
         {
+
             return View();
+        }
+
+        private void InitFakeList()
+        {
+            _productsList = new List<BinViewModel>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                _productsList.Add(new BinViewModel
+                {
+                    ID = 2345,
+                    BinName = "This is test bin",
+                    LastModified = DateTime.Today,
+                    LastModifiedBy = "Alex",
+                    Status = BinStatuses.New.ToString()
+                });
+            }
         }
 
         public ActionResult BinList_Read(SearchBinFilters searchfilters = null)
         {
+            InitFakeList();
+
             var bins = _productsList.AsQueryable();
             var filters = FiltersFactory.BinSearch;
             var result = filters.Aggregate(bins, (current, searchFilter) => searchFilter.Apply(current, searchfilters)).ToList();
 
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult BinList_Update([DataSourceRequest]DataSourceRequest request, BinViewModel product)
+        {
+
+            return Json("");
         }
 
         //public ActionResult Products_Create([DataSourceRequest]DataSourceRequest request, BinViewModel product)

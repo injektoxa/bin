@@ -13,5 +13,9 @@ namespace KendoGridAjaxEditing.Models
         public string LastModifiedBy { get; set; }
 
         public string Status { set; get; }
+
+        public string Description { set; get; }
+
+        public string BinXmlName { set; get; }
     }
 }
