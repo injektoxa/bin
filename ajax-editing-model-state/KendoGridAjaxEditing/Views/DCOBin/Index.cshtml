@@ -1,7 +1,7 @@
 ﻿
 <div id="example">
-    
-    
+
+
     <script type="text/x-kendo-template" id="template">
         <div class="product">
             <img src="../content/web/foods/#= ProductID #.jpg" alt="#: ProductName # image" />
@@ -13,18 +13,31 @@
     <div id="grid"></div>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $("#grid").kendoGrid({
-                height: 550,
-                groupable: true,
+                columns: [
+                { title: "Check All", template: '<input type="checkbox"/>', headerTemplate: '<input type="checkbox" id="check-all" />', width: "30px" },
+                {
+                    headerTemplate: '<img src="http://bkadrenalin.ru/wp-content/uploads/2012/08/%D0%BF%D0%BB%D1%8E%D1%81%D0%B8%D0%BA.png" />',
+                    template: '<img src="http://bkadrenalin.ru/wp-content/uploads/2012/08/%D0%BF%D0%BB%D1%8E%D1%81%D0%B8%D0%BA.png" />',
+                    width: "50px"
+                },
+                             {
+                                 headerTemplate: '<img src="http://i.imgur.com/Cowcx.png" />',
+                                 template: '<img src="http://i.imgur.com/Cowcx.png" />',
+                                 width: "50px"
+                             },
+                            { title: "ID", field: "ID", width: "50px" },
+                            { title: "Bin Name", field: "BinName" },
+                            { title: "Last Modified", field: "LastModified", format: "{0: yyyy-MM-dd HH:mm:ss}" },
+                            { title: "By", field: "LastModifiedBy" },
+                            { title: "Status", field: "Status" },
+                ],
+                height: 800,
+                resizable: true,
                 sortable: true,
                 editable: true,
-                pageable: {
-                    refresh: true,
-                    pageSizes: true,
-                    buttonCount: 5
-                }
             });
 
             var dataSource = new kendo.data.DataSource({

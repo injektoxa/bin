@@ -1,6 +1,4 @@
 ﻿using System.Web;
-using System.Web.SessionState;
-using KendoGridAjaxEditing.Infrastructure.Search;
 
 namespace KendoGridAjaxEditing.Infrastructure.RememberFilter.Interfaces
 {
