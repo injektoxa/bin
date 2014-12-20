@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Kendo.Mvc.UI;
 using KendoGridAjaxEditing.Enums;
+using KendoGridAjaxEditing.Infrastructure.RememberFilter.Implementation;
+using KendoGridAjaxEditing.Infrastructure.RememberFilter.Interfaces;
 using KendoGridAjaxEditing.Infrastructure.Search;
 using KendoGridAjaxEditing.Models;
 using System.Web.Mvc;
@@ -12,6 +15,7 @@ namespace KendoGridAjaxEditing.Controllers
     public class DCOBinController : Controller
     {
         private IList<BinViewModel> _productsList;
+        private IFiltersStore<SearchBinFilters> _filtersStore;
 
         public DCOBinController()
         {
@@ -74,6 +78,8 @@ namespace KendoGridAjaxEditing.Controllers
                             Status = BinStatuses.New.ToString()
                         },
                 };
+
+            this._filtersStore = new BinFiltersStore();
         }
 
         public ActionResult Index()
@@ -88,6 +94,15 @@ namespace KendoGridAjaxEditing.Controllers
             var result = filters.Aggregate(bins, (current, searchFilter) => searchFilter.Apply(current, searchfilters)).ToList();
 
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SaveFilter(SearchBinFilters searchfilters = null)
+        {
+            searchfilters = new SearchBinFilters();
+            _filtersStore.SaveFilter(searchfilters, this.HttpContext.Session);
+
+            var filter = _filtersStore.GetFilter(this.HttpContext.Session);
+            return this.Content("Success");
         }
 
         //public ActionResult Products_Create([DataSourceRequest]DataSourceRequest request, BinViewModel product)
