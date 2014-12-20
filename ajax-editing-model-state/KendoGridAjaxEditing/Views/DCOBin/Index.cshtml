@@ -15,11 +15,6 @@
     <script>
         $(document).ready(function() {
 
-            var data;
-
-            
-
-
             $("#grid").kendoGrid({
                 height: 550,
                 groupable: true,
@@ -31,8 +26,6 @@
                     buttonCount: 5
                 }
             });
-
-
 
             var dataSource = new kendo.data.DataSource({
                 transport: {
@@ -48,24 +41,9 @@
                 }
             });
 
-            //dataSource.fetch(function () {
-            //    data = this.data();
-            //});
-
-
-
-
             var grid = $("#grid").data("kendoGrid");
             grid.setDataSource(dataSource);
-
-
-
-
         });
-
-
-      
-       
 
 
     </script>

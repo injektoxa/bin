@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Kendo.Mvc.UI;
 using KendoGridAjaxEditing.Enums;
+using KendoGridAjaxEditing.Infrastructure.RememberFilter.Implementation;
+using KendoGridAjaxEditing.Infrastructure.RememberFilter.Interfaces;
 using KendoGridAjaxEditing.Infrastructure.Search;
 using KendoGridAjaxEditing.Models;
 using System.Web.Mvc;
@@ -12,9 +15,11 @@ namespace KendoGridAjaxEditing.Controllers
     public class DCOBinController : Controller
     {
         private IList<BinViewModel> _productsList;
+        private IFiltersStore<SearchBinFilters> _filtersStore;
 
         public ActionResult Index()
         {
+            this._filtersStore = new BinFiltersStore();
 
             return View();
         }
@@ -47,6 +52,14 @@ namespace KendoGridAjaxEditing.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult SaveFilter(SearchBinFilters searchfilters = null)
+        {
+            searchfilters = new SearchBinFilters();
+            _filtersStore.SaveFilter(searchfilters, this.HttpContext.Session);
+
+            var filter = _filtersStore.GetFilter(this.HttpContext.Session);
+            return this.Content("Success");
+        }
         public ActionResult BinList_Update([DataSourceRequest]DataSourceRequest request, BinViewModel product)
         {
 
