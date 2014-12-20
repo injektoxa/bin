@@ -1,4 +1,5 @@
 ﻿using KendoGridAjaxEditing.Infrastructure.Search;
+using KendoGridAjaxEditing.Infrastructure.Search.Enums;
 
 namespace KendoGridAjaxEditing.Infrastructure.RememberFilter.Implementation
 {
@@ -6,7 +7,7 @@ namespace KendoGridAjaxEditing.Infrastructure.RememberFilter.Implementation
     {
         public override string GetFilterKey()
         {
-            return "binSearchFilters";
+            return FilterTypes.SearchBinFilters.ToString();
         }
     }
 }

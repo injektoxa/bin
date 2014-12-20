@@ -115,6 +115,7 @@
     <Compile Include="Infrastructure\RememberFilter\Implementation\BinFiltersStore.cs" />
     <Compile Include="Infrastructure\RememberFilter\Implementation\BaseFiltersStore.cs" />
     <Compile Include="Infrastructure\RememberFilter\Interfaces\IFiltersStore.cs" />
+    <Compile Include="Infrastructure\Search\Enums\FilterTypes.cs" />
     <Compile Include="Infrastructure\Search\FiltersFactory.cs" />
     <Compile Include="Infrastructure\Search\Implementation\LastModifiedByFilter.cs" />
     <Compile Include="Infrastructure\Search\Implementation\LastModifiedFilter.cs" />
