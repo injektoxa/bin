@@ -113,7 +113,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Search\FiltersFactory.cs" />
+    <Compile Include="Infrastructure\Search\Implementation\LastModifiedByFilter.cs" />
+    <Compile Include="Infrastructure\Search\Implementation\LastModifiedFilter.cs" />
     <Compile Include="Infrastructure\Search\Implementation\NameFilter.cs" />
+    <Compile Include="Infrastructure\Search\Implementation\StatusFilter.cs" />
     <Compile Include="Infrastructure\Search\Interfaces\ISearchFilter.cs" />
     <Compile Include="Infrastructure\Search\SearchBinFilters.cs" />
     <Compile Include="Models\BinViewModel.cs" />
