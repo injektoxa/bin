@@ -52,5 +52,15 @@ namespace Tests.Search
 
             Assert.AreEqual(_bins.Count(), rersult.Count());
         }
+
+        [TestMethod]
+        public void Apply_WithNullBinList_Should_Return_Null()
+        {
+            var searchfilters = new SearchBinFilters();
+
+            var rersult = _filter.Apply(null, searchfilters);
+
+            Assert.IsNull(rersult);
+        }
     }
 }

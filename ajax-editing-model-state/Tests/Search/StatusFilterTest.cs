@@ -53,10 +53,7 @@ namespace Tests.Search
         [TestMethod]
         public void Apply_WithNullBinList_Should_Return_Null()
         {
-            var searchfilters = new SearchBinFilters()
-            {
-                Status = BinStatuses.Edited
-            };
+            var searchfilters = new SearchBinFilters();
 
             var rersult = _filter.Apply(null, searchfilters);
 
