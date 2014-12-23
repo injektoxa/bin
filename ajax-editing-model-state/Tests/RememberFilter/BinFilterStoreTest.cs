@@ -14,11 +14,13 @@ namespace Tests.RememberFilter
     public class BinFilterStoreTest
     {
         private IFiltersStore<SearchBinFilters> _filtersStore;
+        private HttpSessionStateBase _session;
 
         [TestInitialize]
         public void Initialize()
         {
             _filtersStore = new BinFiltersStore();
+            _session = new MockHttpSession();
         }
 
         [TestMethod]
@@ -31,11 +33,10 @@ namespace Tests.RememberFilter
         [TestMethod]
         public void SaveAndGetFilter_CorrectParams_Should_Return_Equal_Object()
         {
-            var session = new MockHttpSession();
             var filterToSet = this.InitBinFilters();
 
-            _filtersStore.SaveFilter(filterToSet, session);
-            var filterToGet = _filtersStore.GetFilter(session);
+            _filtersStore.SaveFilter(filterToSet, _session);
+            var filterToGet = _filtersStore.GetFilter(_session);
 
             Assert.AreEqual(filterToSet, filterToGet);
         }
@@ -49,13 +50,12 @@ namespace Tests.RememberFilter
 
         public void ResetFilter_Should_Return_Clear_Filter_Object()
         {
-            var session = new MockHttpSession();
             var filterToSet = this.InitBinFilters();
 
-            _filtersStore.SaveFilter(filterToSet, session);
-            _filtersStore.ResetFilter(session);
+            _filtersStore.SaveFilter(filterToSet, _session);
+            _filtersStore.ResetFilter(_session);
 
-            var filterToGet = _filtersStore.GetFilter(session);
+            var filterToGet = _filtersStore.GetFilter(_session);
 
             Assert.AreNotEqual(filterToSet, filterToGet);
         }
