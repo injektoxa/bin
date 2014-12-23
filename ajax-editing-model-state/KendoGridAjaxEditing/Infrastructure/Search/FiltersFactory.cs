@@ -9,7 +9,10 @@ namespace KendoGridAjaxEditing.Infrastructure.Search
     {
         public static IEnumerable<ISearchFilter<BinViewModel, SearchBinFilters>> BinSearch = new List<ISearchFilter<BinViewModel, SearchBinFilters>>
         {
-            new NameFilter()
+            new NameFilter(),
+            new LastModifiedByFilter(),
+            new LastModifiedFilter(),
+            new StatusFilter(),
         };
     }
 }
