@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -51,6 +52,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RememberFilter\BinFilterStoreTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KendoGridAjaxEditing\KendoGridAjaxEditing.csproj">
+      <Project>{a7a6ddfa-b74d-464d-ae29-1c61adf4c4f0}</Project>
+      <Name>KendoGridAjaxEditing</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
