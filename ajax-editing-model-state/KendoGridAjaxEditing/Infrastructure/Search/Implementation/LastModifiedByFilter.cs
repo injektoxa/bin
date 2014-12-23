@@ -10,7 +10,7 @@ namespace KendoGridAjaxEditing.Infrastructure.Search.Implementation
         {
             if (query != null && filter != null && !string.IsNullOrEmpty(filter.LastModifiedBy))
             {
-                query = query.Where(b => b.LastModifiedBy.Equals(filter.LastModifiedBy));
+                query = query.Where(b => b.LastModifiedBy.Contains(filter.LastModifiedBy));
             }
 
             return query;

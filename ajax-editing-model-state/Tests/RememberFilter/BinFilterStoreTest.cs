@@ -48,6 +48,7 @@ namespace Tests.RememberFilter
             _filtersStore.GetFilter(null);
         }
 
+        [TestMethod]
         public void ResetFilter_Should_Return_Clear_Filter_Object()
         {
             var filterToSet = this.InitBinFilters();
