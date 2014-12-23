@@ -56,6 +56,7 @@
     <Compile Include="RememberFilter\BinFilterStoreTest.cs" />
     <Compile Include="Search\LastModifiedByFilterTest.cs" />
     <Compile Include="Search\LastModifiedFilterTest.cs" />
+    <Compile Include="Search\StatusFilterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KendoGridAjaxEditing\KendoGridAjaxEditing.csproj">
