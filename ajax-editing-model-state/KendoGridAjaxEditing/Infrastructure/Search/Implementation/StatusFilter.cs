@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using KendoGridAjaxEditing.Infrastructure.Search.Enums;
 using KendoGridAjaxEditing.Infrastructure.Search.Interfaces;
 using KendoGridAjaxEditing.Models;
 

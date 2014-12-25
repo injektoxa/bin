@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using KendoGridAjaxEditing.Enums;
 
 namespace KendoGridAjaxEditing.Infrastructure.Search
 {
     public class SearchBinFilters
     {
-        public string BinName { get; set; }
+        public FilterType<string> BinName { get; set; }
 
         public int Id { get; set; }
 
