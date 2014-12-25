@@ -1,15 +1,20 @@
-﻿using System.Web;
+﻿using System.Collections;
+using System.Web;
 
 namespace KendoGridAjaxEditing.Infrastructure.RememberFilter.Interfaces
 {
-    public interface IFiltersStore<TFilter> where TFilter : class, new()
+    public interface IFiltersStore<TFilter, TFilterStorage>
+        where TFilter : class, new()
+        where TFilterStorage : IFilterStorage<TFilter>
     {
+        TFilterStorage Storage { get; set; }
+
         string GetFilterKey();
 
-        void SaveFilter(TFilter filter, HttpSessionStateBase session);
+        void SaveFilter(TFilter filter);
 
-        TFilter GetFilter(HttpSessionStateBase session);
+        TFilter GetFilter();
 
-        void ResetFilter(HttpSessionStateBase session);
+        void ResetFilter();
     }
 }

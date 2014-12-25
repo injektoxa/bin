@@ -13,7 +13,7 @@ namespace KendoGridAjaxEditing.Infrastructure.Search
 
         public FilterType<string> Agency { get; set; }
 
-        public BinStatuses Status { get; set; }
+        public FilterType<BinStatuses> Status { get; set; }
 
         public FilterType<RangeFilterField<DateTime>> LastModified { get; set; }
 
