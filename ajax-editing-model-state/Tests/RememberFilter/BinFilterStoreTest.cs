@@ -6,6 +6,8 @@ using KendoGridAjaxEditing.Enums;
 using KendoGridAjaxEditing.Infrastructure.RememberFilter.Implementation;
 using KendoGridAjaxEditing.Infrastructure.RememberFilter.Interfaces;
 using KendoGridAjaxEditing.Infrastructure.Search;
+using KendoGridAjaxEditing.Infrastructure.Search.Enums;
+using KendoGridAjaxEditing.Infrastructure.Search.FilterTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.RememberFilter
@@ -57,7 +59,14 @@ namespace Tests.RememberFilter
             {
                 Id = 2345,
                 BinName = "This is test bin",
-                Status = BinStatuses.New
+                Status = new FilterType<BinStatuses>()
+                {
+                    SearchType = SearchType.Any,
+                    Values = new List<BinStatuses>()
+                    {
+                        BinStatuses.New
+                    }
+                }
             };
         }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using KendoGridAjaxEditing.Enums;
 using KendoGridAjaxEditing.Infrastructure.Search.FilterTypes;
-using KendoGridAjaxEditing.Infrastructure.Search.FilterTypes;
 
 namespace KendoGridAjaxEditing.Infrastructure.Search
 {
@@ -11,7 +10,7 @@ namespace KendoGridAjaxEditing.Infrastructure.Search
 
         public int Id { get; set; }
 
-        public BinStatuses Status { get; set; }
+        public FilterType<BinStatuses> Status { get; set; }
 
         public FilterType<RangeFilterField<DateTime>> LastModified { get; set; }
 
