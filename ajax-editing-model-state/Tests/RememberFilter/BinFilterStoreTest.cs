@@ -13,21 +13,18 @@ namespace Tests.RememberFilter
     [TestClass]
     public class BinFilterStoreTest
     {
-        private IFiltersStore<SearchBinFilters> _filtersStore;
+        private IFiltersStore<SearchBinFilters, SessionFilterStorage<SearchBinFilters>> _filtersStore;
         private HttpSessionStateBase _session;
 
         [TestInitialize]
         public void Initialize()
         {
-            _filtersStore = new BinFiltersStore();
+            _filtersStore = new BinFiltersStore<SessionFilterStorage<SearchBinFilters>>();
             _session = new MockHttpSession();
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void SaveFilter_WithNullSession_Should_Throw_NullReferenceException()
-        {
-            _filtersStore.SaveFilter(new SearchBinFilters(), null);
+            _filtersStore.Storage = new SessionFilterStorage<SearchBinFilters>
+            {
+                Storage = _session
+            };
         }
 
         [TestMethod]
@@ -35,17 +32,10 @@ namespace Tests.RememberFilter
         {
             var filterToSet = this.InitBinFilters();
 
-            _filtersStore.SaveFilter(filterToSet, _session);
-            var filterToGet = _filtersStore.GetFilter(_session);
+            _filtersStore.SaveFilter(filterToSet);
+            var filterToGet = _filtersStore.GetFilter();
 
             Assert.AreEqual(filterToSet, filterToGet);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetFilter_WithNullSession_Should_Throw_NullReferenceException()
-        {
-            _filtersStore.GetFilter(null);
         }
 
         [TestMethod]
@@ -53,19 +43,12 @@ namespace Tests.RememberFilter
         {
             var filterToSet = this.InitBinFilters();
 
-            _filtersStore.SaveFilter(filterToSet, _session);
-            _filtersStore.ResetFilter(_session);
+            _filtersStore.SaveFilter(filterToSet);
+            _filtersStore.ResetFilter();
 
-            var filterToGet = _filtersStore.GetFilter(_session);
+            var filterToGet = _filtersStore.GetFilter();
 
             Assert.AreNotEqual(filterToSet, filterToGet);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void ResetFilter_WithNullSession_Should_Throw_NullReferenceException()
-        {
-            _filtersStore.ResetFilter(null);
         }
 
         private SearchBinFilters InitBinFilters()

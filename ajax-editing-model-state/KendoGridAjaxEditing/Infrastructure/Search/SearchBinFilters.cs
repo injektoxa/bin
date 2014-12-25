@@ -1,6 +1,7 @@
 ﻿using System;
 using KendoGridAjaxEditing.Enums;
 using KendoGridAjaxEditing.Infrastructure.Search.FilterTypes;
+using KendoGridAjaxEditing.Infrastructure.Search.FilterTypes;
 
 namespace KendoGridAjaxEditing.Infrastructure.Search
 {
