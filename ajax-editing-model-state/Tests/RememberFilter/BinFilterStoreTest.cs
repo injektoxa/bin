@@ -74,7 +74,6 @@ namespace Tests.RememberFilter
             {
                 Id = 2345,
                 BinName = "This is test bin",
-                LastModifiedBy = "Alex",
                 Status = BinStatuses.New
             };
         }

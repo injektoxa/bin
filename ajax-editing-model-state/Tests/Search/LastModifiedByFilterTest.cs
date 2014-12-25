@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using KendoGridAjaxEditing.Enums;
 using KendoGridAjaxEditing.Infrastructure.Search;
+using KendoGridAjaxEditing.Infrastructure.Search.Enums;
+using KendoGridAjaxEditing.Infrastructure.Search.FilterTypes;
 using KendoGridAjaxEditing.Infrastructure.Search.Implementation;
 using KendoGridAjaxEditing.Infrastructure.Search.Interfaces;
 using KendoGridAjaxEditing.Models;
@@ -32,7 +34,14 @@ namespace Tests.Search
         {
             var searchfilters = new SearchBinFilters()
             {
-                LastModifiedBy = _modifierName
+                LastModifiedBy = new FilterType<string>()
+                {
+                    SearchType = SearchType.Any,
+                    Values = new List<string>()
+                    {
+                        _modifierName
+                    }
+                }
             };
 
             var rersult = _filter.Apply(_bins, searchfilters);
@@ -41,11 +50,38 @@ namespace Tests.Search
         }
 
         [TestMethod]
-        public void Apply_WithEmptyName_Should_All_Items()
+        public void Apply_WithCorrectAndExistingName_Should_Return_One_Item()
         {
             var searchfilters = new SearchBinFilters()
             {
-                LastModifiedBy = string.Empty
+                LastModifiedBy = new FilterType<string>()
+                {
+                    SearchType = SearchType.All,
+                    Values = new List<string>()
+                    {
+                        _modifierName
+                    }
+                }
+            };
+
+            var rersult = _filter.Apply(_bins, searchfilters);
+
+            Assert.AreEqual(_bins.Count(), rersult.Count());
+        }
+
+        [TestMethod]
+        public void Apply_WithEmptyName_Should_Return_All_Items()
+        {
+            var searchfilters = new SearchBinFilters()
+            {
+                LastModifiedBy = new FilterType<string>()
+                {
+                    SearchType = SearchType.Any,
+                    Values = new List<string>()
+                    {
+                        string.Empty
+                    }
+                }
             };
 
             var rersult = _filter.Apply(_bins, searchfilters);
