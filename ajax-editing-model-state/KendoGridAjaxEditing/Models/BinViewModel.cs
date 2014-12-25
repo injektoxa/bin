@@ -17,5 +17,7 @@ namespace KendoGridAjaxEditing.Models
         public string Description { set; get; }
 
         public string BinXmlName { set; get; }
+
+        public Agency Agency { get; set; }
     }
 }

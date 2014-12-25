@@ -9,6 +9,7 @@ namespace Tests.Helpers
     {
         private const string ModifierName = "Alex";
         private const string BinName = "This is test bin";
+        private const string AnencyName = "This is test Agency";
 
         public static IList<BinViewModel> InitFakeList()
         {
@@ -17,11 +18,12 @@ namespace Tests.Helpers
             {
                 productsList.Add(new BinViewModel
                 {
-                    ID = 2345,
+                    ID = i,
                     BinName = string.Concat(BinName, i),
                     LastModified = DateTime.Today.AddDays(-i),
                     LastModifiedBy = string.Concat(ModifierName, i),
-                    Status = BinStatuses.New.ToString()
+                    Status = BinStatuses.New.ToString(),
+                    Agency = new Agency { Id = i, Name = string.Concat(AnencyName, i) }
                 });
             }
 

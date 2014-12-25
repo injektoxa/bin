@@ -11,9 +11,17 @@ namespace KendoGridAjaxEditing.Infrastructure.Search.Implementation
     {
         public IQueryable<BinViewModel> Apply(IQueryable<BinViewModel> query, SearchBinFilters filter)
         {
-            if (query != null && filter != null && !string.IsNullOrEmpty(filter.LastModifiedBy))
+            if (query != null && filter != null && filter.LastModifiedBy != null && filter.LastModifiedBy.Values != null)
             {
-                query = query.Where(b => b.LastModifiedBy.Contains(filter.LastModifiedBy));
+                if (filter.LastModifiedBy.SearchType == SearchType.All)
+                {
+                    return query.Where(b => filter.LastModifiedBy.Values.TrueForAll(v => b.LastModifiedBy.Contains(v)));
+                }
+
+                if (filter.LastModifiedBy.SearchType == SearchType.Any)
+                {
+                    return query.Where(b => filter.LastModifiedBy.Values.Any(v => b.LastModifiedBy.Contains(v)));
+                }
             }
 
             return query;

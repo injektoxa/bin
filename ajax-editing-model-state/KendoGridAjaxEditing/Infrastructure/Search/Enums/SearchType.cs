@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services.Protocols;
 
-namespace KendoGridAjaxEditing.Infrastructure.Search.Enums
+﻿namespace KendoGridAjaxEditing.Infrastructure.Search.Enums
 {
     public enum SearchType
     {

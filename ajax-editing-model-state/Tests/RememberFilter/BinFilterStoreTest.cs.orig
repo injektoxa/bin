@@ -72,6 +72,13 @@ namespace Tests.RememberFilter
         {
             return new SearchBinFilters()
             {
+                Id = 2345,
+<<<<<<< HEAD
+                //BinName = "This is test bin",
+                LastModifiedBy = "Alex",
+=======
+                BinName = "This is test bin",
+>>>>>>> origin/master
                 Status = BinStatuses.New
             };
         }

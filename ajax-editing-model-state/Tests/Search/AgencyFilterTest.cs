@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using KendoGridAjaxEditing.Enums;
+using System.Text;
+using System.Threading.Tasks;
 using KendoGridAjaxEditing.Infrastructure.Search;
 using KendoGridAjaxEditing.Infrastructure.Search.Enums;
 using KendoGridAjaxEditing.Infrastructure.Search.FilterTypes;
@@ -15,7 +15,7 @@ using Tests.Helpers;
 namespace Tests.Search
 {
     [TestClass]
-    public class TestSearchFilters
+    public class AgencyFilterTest
     {
         private IQueryable<BinViewModel> _bins;
         private ISearchFilter<BinViewModel, SearchBinFilters> _filter;
@@ -24,18 +24,18 @@ namespace Tests.Search
         public void Initialize()
         {
             _bins = ProductsListInitializer.InitFakeList().AsQueryable();
-            _filter = new NameFilter();
+            _filter = new AgencyFilter();
         }
 
         [TestMethod]
-        public void NameFilterApply_WithAnySearchType_ReturnRecordThatContainsAnyFilters()
+        public void AgencyFilterApply_WithAnySearchType_ReturnRecordThatContainsAnyFilters()
         {
             var searchFilters = new SearchBinFilters
             {
-                BinName = new FilterType<string>
+                Agency = new FilterType<string>
                 {
                     SearchType = SearchType.Any,
-                    Values = new List<string> { "This", "bin1" }
+                    Values = new List<string> { "This", "Agency1" }
                 }
             };
 
@@ -45,14 +45,14 @@ namespace Tests.Search
         }
 
         [TestMethod]
-        public void NameFilterApply_WithAllSearchType_ReturnRecordThatContainsAllFilters()
+        public void AgencyFilterApply_WithAllSearchType_ReturnRecordThatContainsAllFilters()
         {
             var searchFilters = new SearchBinFilters
             {
-                BinName = new FilterType<string>
+                Agency = new FilterType<string>
                 {
                     SearchType = SearchType.All,
-                    Values = new List<string> { "This", "bin1" }
+                    Values = new List<string> { "This", "Agency1" }
                 }
             };
 
@@ -62,7 +62,7 @@ namespace Tests.Search
         }
 
         [TestMethod]
-        public void NameFilterApply_WithNullField_ReturnNotChangedList()
+        public void AgencyFilterApply_WithNullField_ReturnNotChangedList()
         {
             var searchFilters = new SearchBinFilters();
 
@@ -72,7 +72,7 @@ namespace Tests.Search
         }
 
         [TestMethod]
-        public void NameFilterApply_WithNullModel_ReturnNull()
+        public void AgencyFilterApply_WithNullModel_ReturnNull()
         {
             var searchFilters = new SearchBinFilters();
 

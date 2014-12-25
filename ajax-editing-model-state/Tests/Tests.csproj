@@ -53,8 +53,9 @@
   <ItemGroup>
     <Compile Include="Helpers\ProductsListInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\AgencyFilterTest.cs" />
     <Compile Include="Search\NameFilterTest.cs" />
-    <Compile Include="Search\UnitTest1.cs" />
+    <Compile Include="Search\IdFilterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KendoGridAjaxEditing\KendoGridAjaxEditing.csproj">

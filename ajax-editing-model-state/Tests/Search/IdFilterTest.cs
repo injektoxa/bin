@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using KendoGridAjaxEditing.Enums;
 using KendoGridAjaxEditing.Infrastructure.Search;
 using KendoGridAjaxEditing.Infrastructure.Search.Enums;
 using KendoGridAjaxEditing.Infrastructure.Search.FilterTypes;
@@ -15,7 +13,7 @@ using Tests.Helpers;
 namespace Tests.Search
 {
     [TestClass]
-    public class TestSearchFilters
+    public class IdFilterTest
     {
         private IQueryable<BinViewModel> _bins;
         private ISearchFilter<BinViewModel, SearchBinFilters> _filter;
@@ -24,35 +22,17 @@ namespace Tests.Search
         public void Initialize()
         {
             _bins = ProductsListInitializer.InitFakeList().AsQueryable();
-            _filter = new NameFilter();
+            _filter = new IdFilter();
         }
 
         [TestMethod]
-        public void NameFilterApply_WithAnySearchType_ReturnRecordThatContainsAnyFilters()
+        public void IdFilterApply_WithValidValue_ReturnOneRecord()
         {
             var searchFilters = new SearchBinFilters
             {
-                BinName = new FilterType<string>
+                Id = new FilterType<int>
                 {
-                    SearchType = SearchType.Any,
-                    Values = new List<string> { "This", "bin1" }
-                }
-            };
-
-            var result = _filter.Apply(_bins, searchFilters);
-
-            Assert.AreEqual(_bins.Count(), result.Count());
-        }
-
-        [TestMethod]
-        public void NameFilterApply_WithAllSearchType_ReturnRecordThatContainsAllFilters()
-        {
-            var searchFilters = new SearchBinFilters
-            {
-                BinName = new FilterType<string>
-                {
-                    SearchType = SearchType.All,
-                    Values = new List<string> { "This", "bin1" }
+                    Values = new List<int> { 1 }
                 }
             };
 
@@ -62,17 +42,23 @@ namespace Tests.Search
         }
 
         [TestMethod]
-        public void NameFilterApply_WithNullField_ReturnNotChangedList()
+        public void IdFilterApply_WithEmptyValue_ReturnNoRecord()
         {
-            var searchFilters = new SearchBinFilters();
+            var searchFilters = new SearchBinFilters
+            {
+                Id = new FilterType<int>
+                {
+                    Values = new List<int>()
+                }
+            };
 
             var result = _filter.Apply(_bins, searchFilters);
 
-            Assert.AreEqual(result.Count(), _bins.Count());
+            Assert.AreEqual(0, result.Count());
         }
 
         [TestMethod]
-        public void NameFilterApply_WithNullModel_ReturnNull()
+        public void IdFilterApply_WithNullList_ReturnNull()
         {
             var searchFilters = new SearchBinFilters();
 
